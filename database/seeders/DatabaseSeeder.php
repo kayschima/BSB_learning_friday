@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Todo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,25 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Todo::create([
+            'description' => 'Milch kaufen',
+        ]);
+
+        Todo::create([
+            'description' => 'Kinder ins Bett bringen',
+        ]);
+
+        Todo::create([
+            'description' => 'Auto waschen',
+        ]);
+
+        Todo::create([
+            'description' => 'Hühner füttern',
+        ]);
+
+        Todo::create([
+            'description' => 'Teppich absaugen',
+        ]);
     }
 }
