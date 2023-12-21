@@ -9,6 +9,9 @@ class HelloWorldController extends Controller
     public function index()
     {
         $allTodos = Todo::all();
-        dd($allTodos);
+
+        return view('todos', [
+            'todos' => $allTodos
+        ]);
     }
 }
