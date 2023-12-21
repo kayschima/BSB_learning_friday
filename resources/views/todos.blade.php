@@ -33,6 +33,19 @@
         @endforeach
         </tbody>
     </table>
+    <div class="mt-4 p-2 bg-amber-200 rounded-2xl border border-gray-900">
+        <h3 class="text-md font-bold underline">Todos hinzufügen</h3>
+        <form action="/todos" method="post">
+            @csrf
+            <label class="text-sm" for="description">Beschreibung</label>
+            <input class="pl-1 rounded" type="text" name="description" id="description"
+                   class="border border-gray-900 rounded">
+            <button type="submit"
+                    class="text-sm bg-amber-400 border border-amber-800 hover:border-amber-400 hover:bg-amber-800 hover:text-amber-200 rounded p-1">
+                Hinzufügen
+            </button>
+        </form>
+    </div>
 
 </div>
 
