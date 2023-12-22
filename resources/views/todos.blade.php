@@ -35,7 +35,7 @@
     </table>
     <div class="mt-4 p-2 bg-amber-200 rounded-2xl border border-gray-900">
         <h3 class="text-md font-bold underline">Todos hinzufügen</h3>
-        <form action="/todos" method="post">
+        <form action="/todos/create" method="post">
             @csrf
             <label class="text-sm" for="description">Beschreibung</label>
             <input class="pl-1 rounded" type="text" name="description" id="description"

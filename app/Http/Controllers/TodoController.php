@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function store(Request $request)
+    public function create(Request $request)
     {
         Todo::create([
             'description' => $request->description
