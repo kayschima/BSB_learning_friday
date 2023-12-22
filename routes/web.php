@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HelloWorldController::class, 'index']);
 
-Route::post('/todos', [TodoController::class, 'store']);
+Route::post('/todos/create', [TodoController::class, 'create']);
+Route::post('/todos/update', [TodoController::class, 'update']);
