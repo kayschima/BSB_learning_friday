@@ -29,4 +29,11 @@ class TodoController extends Controller
 
         return redirect('/')->with('success', 'Todos erfolgreich aktualisiert!');
     }
+
+    public function delete(Todo $todo)
+    {
+        $todo->delete();
+
+        return redirect('/')->with('success', 'Todo erfolgreich gelöscht!');
+    }
 }

@@ -19,3 +19,5 @@ Route::get('/', [HelloWorldController::class, 'index']);
 
 Route::post('/todos/create', [TodoController::class, 'create']);
 Route::post('/todos/update', [TodoController::class, 'update']);
+
+Route::get('/todos/{todo}/delete', [TodoController::class, 'delete']);
