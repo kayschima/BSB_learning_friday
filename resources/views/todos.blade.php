@@ -8,45 +8,78 @@
     <title>Die Todos von VD25</title>
     @vite('resources/css/app.css')
 </head>
-<body>
-<div class="bg-blue-300 max-w-2xl mx-auto rounded-xl p-4 mt-4">
+<body class="antialiased">
+<div class="container max-w-4xl mx-auto mt-4">
     {{--    Überschrift--}}
     <h1 class="text-2xl font-bold underline mb-4">Die Todos von VD25</h1>
 
     {{--    Tabellarische Übersicht--}}
     <form action="/todos/update" method="post">
         @csrf
-        <table class="table table-fixed border border-2  border-gray-900 rounded text-sm">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Beschreibung</th>
-                <th>erld.?</th>
-                <th>erstellt</th>
-                <th>geändert</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($todos as $todo)
-                <tr class="text-sm border border-gray-900">
-                    <td class="border border-gray-900 px-2 py-1">{{ $todo->id }}
-                        <input type="hidden" name="id[]" value={{ $todo->id }}>
-                    </td>
-                    <td class="border border-gray-900 px-2 py-1">
-                        <input class="rounded bg-blue-200 border border-blue-800 pl-2" type="text" name="description[]"
-                               value="{{ $todo->description }}">
-                    </td>
-                    <td class="border border-gray-900 px-2 py-1">
-                        <input type="checkbox" name="done[]" value={{$todo->id}} {{ $todo->done?'checked':'' }}>
-                    </td>
-                    <td class="border border-gray-900 px-2 py-1">{{ $todo->created_at }}</td>
-                    <td class="border border-gray-900 px-2 py-1">{{ $todo->updated_at }}</td>
+
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        #
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Beschreibung
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        erled.?
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        erstellt
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        geändert
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($todos as $todo)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $todo->id }}
+                            <input type="hidden" name="id[]" value={{ $todo->id }}>
+                        </th>
+                        <td class="px-6 py-2">
+                            <input class="rounded text-gray-900 focus:bg-gray-100 border border-gray-900 px-2 py-1"
+                                   type="text" name="description[]"
+                                   value="{{ $todo->description }}">
+                        </td>
+                        <td class="px-6 py-2">
+                            <input type="checkbox" name="done[]" value={{$todo->id}} {{ $todo->done?'checked':'' }}>
+                        </td>
+                        <td class="px-6 py-2">
+                            {{ $todo->formattedCreatedAt }}
+                        </td>
+                        <td class="px-6 py-2">
+                            {{ $todo->formattedUpdatedAt }}
+                        </td>
+                        <td class="px-6 py-2 text-right">
+                            <a href="#" class="text-gray-900">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
         <button type="submit"
-                class="mt-2 text-sm bg-blue-400 border border-blue-800 hover:border-blue-400 hover:bg-blue-800 hover:text-blue-200 rounded p-1">
+                class="mt-4 text-sm border border-gray-900 bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-gray-400 rounded px-2 py-1">
             Speichern
         </button>
     </form>
@@ -59,15 +92,16 @@
     @endsession
 
     {{--    Formular zum Hinzufügen von Todos--}}
-    <div class="mt-4 p-2 bg-amber-200 rounded-2xl border border-gray-900">
+    <div class="mt-4 p-2 bg-gray-50 rounded border border-2 border-gray-900">
         <h3 class="text-md font-bold underline">Todos hinzufügen</h3>
-        <form action="/todos/create" method="post">
+        <form class="mt-2 flex items-center space-x-4" action="/todos/create" method="post">
             @csrf
             <label class="text-sm" for="description">Beschreibung</label>
-            <input class="rounded bg-amber-50 border border-amber-800 pl-2" type="text" name="description"
+            <input class="rounded text-gray-900 focus:bg-gray-100 border border-gray-900 px-2 py-1" type="text"
+                   name="description"
                    id="description">
             <button type="submit"
-                    class="text-sm bg-amber-400 border border-amber-800 hover:border-amber-400 hover:bg-amber-800 hover:text-amber-200 rounded p-1">
+                    class="text-sm border border-gray-900 bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-gray-400 rounded px-2 py-1">
                 Hinzufügen
             </button>
         </form>
