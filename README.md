@@ -1,6 +1,6 @@
 # BSB Learning Friday
 
-### MVC-Webapplicatiobs mit Laravel
+### MVC-Webapplications mit Laravel
 
 ## Installation
 
@@ -16,10 +16,11 @@ git clone https://github.com/kayschima/BSB_learning_friday.git
 cd BSB_learning_friday
 ```
 
-#### 3. alle PHP-Komponenten mit Composer installieren
+#### 3. alle PHP-Komponenten mit Composer installieren und Verschlüsselungskey generieren
 
 ```bash
 composer install -o
+php artisan key:generate
 ```
 
 #### 4. CSS und JavaScript mit NPM installieren und kompilieren
@@ -48,4 +49,4 @@ php artisan serve
 ```
 ## License
 
-TDiese beispiele stehen alle unter der [MIT license](https://opensource.org/licenses/MIT).
+Diese beispiele stehen alle unter der [MIT license](https://opensource.org/licenses/MIT).
