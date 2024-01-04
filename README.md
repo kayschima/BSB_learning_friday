@@ -49,4 +49,4 @@ php artisan serve
 ```
 ## License
 
-Diese beispiele stehen alle unter der [MIT license](https://opensource.org/licenses/MIT).
+Diese Beispiele stehen alle unter der [MIT license](https://opensource.org/licenses/MIT).
